@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Xtra Blog</title>
+	<link rel="stylesheet" href="{% static 'appBlog/fontawesome/css/all.min.css' %}"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="{% static 'appBlog/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'appBlog/css/templatemo-xtra-blog.css' %}" rel="stylesheet">
 </head>
-<body style="background-color:red">
-    
+<body>
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    <li class="tm-nav-item"><a href="{% url 'inicio' %}" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Inicio
+                    </a></li>
+                    <li class="tm-nav-item"><a href="post.html" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        Mensajes
+                    </a></li>
+                    <li class="tm-nav-item active"><a href="about.html" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Cuentas
+                    </a></li>
+                    <li class="tm-nav-item"><a href="contact.html" class="tm-nav-link">
+                        <i class="far fa-comments"></i>
+                        Acerca de mi
+                    </a></li>
+                </ul>
+            </nav>
+    </header>
+    <div class="container-fluid">
+        <main class="tm-main">        
+            <div class="row tm-row tm-mb-45">
+                <div class="col-12">
+                    <hr class="tm-hr-primary tm-mb-55">
+                </div>
+            </div>
+            <div class="row tm-row tm-mb-40">
+                <div class="col-12">                    
+                    <div class="mb-4">
+                        <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">Acerca de este blog</h2>
+                        <p>
+                            Este sitio fue realizado como requerimiento para el curso de Python de Coderhouse de 2022. Se creo 
+                            utilizando los conocimientos adquiridos durante el curso.
+                        </p>
+                        <p>
+
+                        </p>                            
+                    </div>                    
+                </div>
+            </div>  
+            
+            
+            <div class="row tm-row tm-mb-40">
+                <div class="col-12">                    
+                    <div class="mb-4">
+                        <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">Acerca de mi</h2>
+                        <p>
+                            
+                            Hola! Soy Martin, actualmente me encuentro estudiando ingenieria en sistemas en Uruguay.
+                            Tengo 23 años, y mi interes por la programacion comenzo cuando era bastante joven, luego de haber pasado horas en frente a una computadora,
+                            fui desarrollando un interes casi natural por todo lo relacionado con esta.
+                            <br>
+                            <br>
+                            La idea original detras de realizar este curso, fue el de aprender Python. Me interesa demasiado las areas de data science y de machine learning,
+                            y tengo entendido que Python es uno de los lenguajes mas utilizado para estas areas.
+
+                        </p>
+                        <p>
+
+                        </p>                            
+                    </div>                    
+                </div>
+            </div>  
+      
+        </main>
+    </div>
 </body>
 </html>
