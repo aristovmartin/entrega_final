@@ -4,7 +4,7 @@
     {% load static %}
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Xtra Blog</title>
+	<title>Blog</title>
 	<link rel="stylesheet" href="{% static 'appBlog/fontawesome/css/all.min.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
     <link href="{% static 'appBlog/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -66,7 +66,8 @@
                 <!-- Esto es un articulo -->
                 <article class="col-12 col-md-6 tm-post">
                     <hr class="tm-hr-primary">
-                    <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                    <!-- Aqui a coantinuacion va el link a el post completo-->
+                    <a href="{% url 'pagina_blog' %}" class="effect-lily tm-post-link tm-pt-60">
                         <div class="tm-post-link-inner">
                             <img src="img/img-01.jpg" alt="Image" class="img-fluid">                            
                         </div>

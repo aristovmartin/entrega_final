@@ -7,3 +7,6 @@ def home(request):
 
 def about_me(request):
     return render(request,'about_me.html')
+
+def pagina_blog(request):
+    return render(request,'page.html')
