@@ -8,7 +8,7 @@
         <div class="row tm-row">
             <div class="col-12">
                 <hr class="tm-hr-primary tm-mb-55">
-                <img src="img/img-01.jpg" alt="Image" class="img-fluid">  
+                <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">  
             </div>
         </div>
         <div class="row tm-row">
@@ -18,10 +18,7 @@
                         <h2 class="pt-2 tm-color-primary tm-post-title">{{blog.titulo}}</h2>
                         <h4 class="pt-2 tm-color-primary tm-post-subtitle">{{blog.subtitulo}}</h4>
                         <p class="tm-mb-40">{{blog.fecha}}, autor {{blog.autor}}</p>
-                        <p>
-                            {{blog.cuerpo}}
-                        </p>
-
+                        <p> {{blog.cuerpo}} </p>
             </div>        
         </div>
     </div>

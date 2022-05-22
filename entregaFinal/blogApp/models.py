@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Blog(models.Model):
     id_blog = models.BigAutoField(primary_key=True)
