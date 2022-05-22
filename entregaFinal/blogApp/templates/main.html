@@ -26,7 +26,7 @@
                         <i class="fas fa-home"></i>
                         Inicio
                     </a></li>
-                    <li class="tm-nav-item"><a href="post.html" class="tm-nav-link">
+                    <li class="tm-nav-item"><a href="#" class="tm-nav-link">
                         <i class="fas fa-pen"></i>
                         Mensajes
                     </a></li>
@@ -63,6 +63,7 @@
             </div> 
                        
             <div class="row tm-row">
+                {% for blog in blogs %}
                 <!-- Esto es un articulo -->
                 <article class="col-12 col-md-6 tm-post">
                     <hr class="tm-hr-primary">
@@ -71,154 +72,23 @@
                             <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
                         </div>
                         <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{blog.titulo}}</h2>
+                        <h4 class="tm-pt-30 tm-color-primary tm-post-subtitule">{{blog.subtitulo}}</h4>
                     </a>                    
                     <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
+                        {{blog.cuerpo}}
                     </p>
                     <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
+                        <span class="tm-color-primary">{{blog.fecha}}</span>
                         <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
+                        <span>{{blog.autor}}</span>
                     </div>
                 </article>
+                {% endfor %}
                 <!-- Aca termina un articulo -->
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
-                        </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
-                    </div>
-                </article>
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
-                        </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
-                    </div>
-                </article>
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
-                        </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
-                    </div>
-                </article>
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
-                        </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
-                    </div>
-                </article>
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
-                        </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
-                    </div>
-                </article>
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
-                        </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        There is a clickable image with beautiful hover effect and active title link for each post item. 
-                        Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">June 24, 2020</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>by Admin Nat</span>
-                    </div>
-                </article>
             </div>
         </main>
     </div>
