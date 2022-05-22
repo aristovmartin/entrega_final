@@ -71,7 +71,9 @@
                         <div class="tm-post-link-inner">
                             <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
                         </div>
-                        <span class="position-absolute tm-new-badge">New</span>
+                        {% if fecha_hoy == blog.fecha %}
+                        <span class="position-absolute tm-new-badge">Nuevo</span>
+                        {% endif %}
                         <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{blog.titulo}}</h2>
                         <h4 class="tm-pt-30 tm-color-primary tm-post-subtitule">{{blog.subtitulo}}</h4>
                     </a>                    
@@ -80,7 +82,7 @@
                     </p>
                     <div class="d-flex justify-content-between tm-pt-45">
                         <span class="tm-color-primary">{{blog.fecha}}</span>
-                        <a href="{% url 'pagina_blog' %}"><span class="tm-color-primary">Leer mas</span></a>
+                        <a href="{% url 'pagina_blog' '{{blog.id_blog}}' %}"><span class="tm-color-primary">Leer mas</span></a>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">

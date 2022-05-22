@@ -1,17 +1,30 @@
 {% extends "home.html" %}
 
 {% load static %}
+{% bloqueBlog %}
 
-{% block cuerpoBlog %}
+<div class="container-fluid">
+    <main class="tm-main">         
+        <div class="row tm-row">
+            <div class="col-12">
+                <hr class="tm-hr-primary tm-mb-55">
+                <img src="img/img-01.jpg" alt="Image" class="img-fluid">  
+            </div>
+        </div>
+        <div class="row tm-row">
+            <div class="col-lg-8 tm-post-col">
+                <div class="tm-post-full">                    
+                    <div class="mb-4">
+                        <h2 class="pt-2 tm-color-primary tm-post-title">{{blog.titulo}}</h2>
+                        <h4 class="pt-2 tm-color-primary tm-post-subtitle">{{blog.subtitulo}}</h4>
+                        <p class="tm-mb-40">{{blog.fecha}}, autor {{blog.autor}}</p>
+                        <p>
+                            {{blog.cuerpo}}
+                        </p>
 
-<form action="{% url 'pagina_blog' %}" method="post">{% csrf_token %}
+            </div>        
+        </div>
+    </div>
+</div>
 
-    <table> 
-        {{formulario.as_table}}
-    </table>
-
-    <input type="submit" value="Enviar">
-
-</form>
-
-{% endblock %}
+{% endblog %}
