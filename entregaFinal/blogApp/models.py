@@ -27,4 +27,5 @@ class Mensaje(models.Model):
     id_usuario_origen = models.IntegerField()
     id_usuario_destino = models.IntegerField()
     texto = models.CharField(max_length=250)
+    
 

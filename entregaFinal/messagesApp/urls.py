@@ -1,7 +1,7 @@
 from django.urls import path
-#from aufApp import views
+from messagesApp import views
 
 urlpatterns = [
-    #path('', views.home, name="inicio"),
+    path('', views.main_mensajes, name="mensajes"),
 
 ]
