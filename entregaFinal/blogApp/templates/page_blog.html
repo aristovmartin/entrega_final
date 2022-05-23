@@ -1,6 +1,21 @@
 {% extends "page.html" %}
 
 {% load static %}
+
+{% block sidebar %}
+
+<li class="tm-nav-item"><a href="{% url 'editar_blog' blog.id_blog %}" class="tm-nav-link">
+    <i class="fas fa-edit"></i>
+    Editar blog
+</a></li>
+<li class="tm-nav-item"><a href="#" class="tm-nav-link">
+    <i class="far fa-trash-alt"></i>
+    Borrar blog
+</a></li>
+
+{% endblock %}
+
+
 {% block bloqueBlog %}
 
 <div class="container-fluid">

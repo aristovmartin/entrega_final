@@ -1,0 +1,42 @@
+{% extends "page.html" %}
+
+{% load static %}
+
+{% block sidebar %}
+
+<li class="tm-nav-item"><a href="{% url 'editar_blog' id %}" class="tm-nav-link">
+    <i class="fas fa-edit"></i>
+    Editar blog
+</a></li>
+<li class="tm-nav-item"><a href="#" class="tm-nav-link">
+    <i class="far fa-trash-alt"></i>
+    Borrar blog
+</a></li>
+
+{% endblock %}
+
+
+{% block bloqueBlog %}
+
+<div class="container-fluid">
+    <main class="tm-main">         
+        <div class="row tm-row">
+            <div class="col-lg-8 tm-post-col">
+                <div class="tm-post-full">                    
+                    <div class="mb-4">
+                        <form action="{% url 'crear_blog' %}" method="post">{% csrf_token %}
+                            <table> 
+                                {{formulario.as_table}}
+                            </table>
+                            <br>
+                            <input type="submit" value="Editar">
+                        
+                        </form>
+            </div>        
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

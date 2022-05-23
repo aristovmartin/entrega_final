@@ -29,4 +29,29 @@ def crear_blog(request):
             return render(request,'main.html')
     else:
         formulario = BlogForm()
-        return render(request,'create_blog.html',{'formulario':formulario})   
+        return render(request,'create_blog.html',{'formulario':formulario})  
+
+#falta poder ver como editar foto
+def editar_blog(request,id):
+    blog = Blog.objects.get(id_blog = id)
+    if request.method == 'POST':
+         forumario = BlogForm(request.POST)
+         if formulario.is_valid():
+             informacion = formulario.cleaned_data
+             
+             blog.titulo = informacion["titulo"]
+             blog.subtitulo = informacion["subtitulo"]
+             blog.cuerpo = informacion["cuerpo"]
+             blog.autor = informacion["autor"]
+             blog.fecha = informacion["fecha"]
+             
+             blog.save()
+             
+             return render(request,'main.html')
+    else:
+        formulario = BlogForm(initial={'titulo':blog.titulo,'subtitulo':blog.subtitulo,
+                                       'cuerpo':blog.cuerpo,'autor':blog.autor,
+                                       'fecha':blog.fecha})
+        return render(request,'editar_blog.html', {"formulario":formulario, "id":id})
+             
+
