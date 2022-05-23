@@ -13,7 +13,6 @@ def pagina_blog(request,id):
     today = datetime.now()
     return render(request,'page_blog.html',{"blog":blog})
 
-#muestro los blogs en el main
 def main(request):
     blogs = Blog.objects.all()
     today = datetime.now().date()
@@ -26,7 +25,10 @@ def crear_blog(request):
             informacion = formulario.cleaned_data
             blog = Blog(titulo=informacion['titulo'],subtitulo=informacion['subtitulo'],cuerpo=informacion['cuerpo'],autor=informacion['autor'],fecha=informacion['fecha'])
             blog.save()
-            return render(request,'main.html')
+            
+            blogs = Blog.objects.all()
+            today = datetime.now().date()
+            return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today}) 
     else:
         formulario = BlogForm()
         return render(request,'create_blog.html',{'formulario':formulario})  
@@ -35,7 +37,7 @@ def crear_blog(request):
 def editar_blog(request,id):
     blog = Blog.objects.get(id_blog = id)
     if request.method == 'POST':
-         forumario = BlogForm(request.POST)
+         formulario = BlogForm(request.POST)
          if formulario.is_valid():
              informacion = formulario.cleaned_data
              
@@ -46,8 +48,10 @@ def editar_blog(request,id):
              blog.fecha = informacion["fecha"]
              
              blog.save()
-             
-             return render(request,'main.html')
+
+             blogs = Blog.objects.all()
+             today = datetime.now().date()
+             return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today}) 
     else:
         formulario = BlogForm(initial={'titulo':blog.titulo,'subtitulo':blog.subtitulo,
                                        'cuerpo':blog.cuerpo,'autor':blog.autor,
