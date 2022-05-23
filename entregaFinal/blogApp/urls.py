@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from blogApp import views
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('crearBlog', views.crear_blog, name="crear_blog"),
     path('editarBlog/<id>', views.editar_blog, name="editar_blog"),
     path('borrarBlog/<id>', views.eliminar_blog, name="eliminar_blog"),
+    path('mensajes', include('messagesApp.urls'), name="mensajes"),
 
 ]
