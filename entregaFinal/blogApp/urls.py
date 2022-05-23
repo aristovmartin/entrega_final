@@ -7,5 +7,6 @@ urlpatterns = [
     path('blog/<id>', views.pagina_blog, name="pagina_blog"),
     path('crearBlog', views.crear_blog, name="crear_blog"),
     path('editarBlog/<id>', views.editar_blog, name="editar_blog"),
+    path('borrarBlog/<id>', views.eliminar_blog, name="eliminar_blog"),
 
 ]

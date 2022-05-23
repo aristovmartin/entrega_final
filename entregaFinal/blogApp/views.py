@@ -54,4 +54,10 @@ def editar_blog(request,id):
                                        'fecha':blog.fecha})
         return render(request,'editar_blog.html', {"formulario":formulario, "id":id})
              
-
+def eliminar_blog(request,id):
+    blog = Blog.objects.get(id_blog = id)
+    blog.delete()
+    
+    blogs  = Blog.objects.all()
+    
+    return render(request,'main.html',{"blogs":blogs})
