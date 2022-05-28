@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.decorators import *
 
 # Create your views here.
 
@@ -46,3 +47,6 @@ def registro(request):
         form = UserCreationForm()
         
     return render(request,"registro.html",{"form":form})
+
+def logout(request):
+    return render(request,'logout.html')
