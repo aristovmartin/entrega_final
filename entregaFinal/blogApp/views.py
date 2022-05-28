@@ -65,3 +65,7 @@ def eliminar_blog(request,id):
     blogs  = Blog.objects.all()
     
     return render(request,'main.html',{"blogs":blogs})
+
+def mensajes(request):
+    mensajes = Mensaje.objects.all()
+    return render(request,'mensajes.html',{"mensajes":mensajes})

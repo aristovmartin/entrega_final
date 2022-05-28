@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cuentas</title>
+	<link rel="stylesheet" href="{% static 'appBlog/fontawesome/css/all.min.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="{% static 'appBlog/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'appBlog/css/templatemo-xtra-blog.css' %}" rel="stylesheet">
+
+</head>
+<body>
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    <li class="tm-nav-item active"><a href="{% url 'volver_blog' %}" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Inicio
+                    </a></li>
+                    <li class="tm-nav-item"><a href="{% url 'login' %}" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Iniciar Sesion
+                    </a></li>
+                    <li class="tm-nav-item"><a href="{% url 'registro' %}" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Registrarse
+                    </a></li>
+                </ul>
+            </nav>
+    </header>
+    <div class="container-fluid">
+        <main class="tm-main">        
+            <div class="row tm-row">
+
+                {% block cuentas %}
+
+                {% endblock %}
+
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

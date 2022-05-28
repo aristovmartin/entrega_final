@@ -8,6 +8,7 @@ urlpatterns = [
     path('crearBlog', views.crear_blog, name="crear_blog"),
     path('editarBlog/<id>', views.editar_blog, name="editar_blog"),
     path('borrarBlog/<id>', views.eliminar_blog, name="eliminar_blog"),
-    path('mensajes', include('messagesApp.urls'), name="mensajes"),
+    path('mensajes',views.mensajes, name="mensajes"),
+    path('accounts/',include('accountsApp.urls'), name="cuentas"),
 
 ]

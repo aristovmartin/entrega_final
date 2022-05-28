@@ -1,0 +1,42 @@
+{% extends "page.html" %}
+
+{% load static %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block bloqueBlog %}
+
+    <div class="container-fluid">
+        <main class="tm-main">        
+            <div class="row tm-row">
+                {% for mensaje in mensajes %}
+                <article class="col-12 col-md-6 tm-post">
+                    <hr class="tm-hr-primary">
+                    <a class="">
+                        <div class="tm-post-link-inner">
+                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
+                        </div>
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">El usuario: {{mensaje.id_usuario_origen}}</h2>
+                        <h4 class="tm-pt-30 tm-color-primary tm-post-subtitule"></h4>
+                    </a>                    
+                    <p class="tm-pt-30">
+                        {{mensajes.texto}}
+                    </p>
+                    <div class="d-flex justify-content-between tm-pt-45">
+                        <span class="tm-color-primary"></span>
+                        <a href="{% url 'pagina_blog' blog.id_blog %}"><span class="tm-color-primary">Leer mas</span></a>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span>{{mensaje.texto}}</span>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+
+{% endblock %}
