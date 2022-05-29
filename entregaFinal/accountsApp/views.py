@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import *
-
+from .forms import *
 # Create your views here.
 
 def home(request):
@@ -50,3 +50,25 @@ def registro(request):
 
 def logout(request):
     return render(request,'logout.html')
+
+def edit_user(request):
+    usuario = request.user
+    
+    if request.method == "POST":
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            
+            usuario.email = informacion["email"]
+            usuario.password1 = informacion["password1"]
+            usuario.password2 = informacion["password2"]
+            usuario.username = informacion["username"]
+            last_name = informacion["last_name"]
+            first_name = informacion["first_name"]
+            usuario.save()
+            
+            return render(request,"home.html")
+    else:
+        miFormulario = UserEditForm(initial={'email':usuario.email,'nombre_usuario':usuario.nombre_usuario})
+    
+    return render(request,'edit_user.html',{"miFormulario":miFormulario,"usuario":usuario})

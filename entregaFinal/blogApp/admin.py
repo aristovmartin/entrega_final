@@ -3,8 +3,8 @@ from .models import *
 
 admin.site.register(Blog)
 
-admin.site.register(Usuario)
+admin.site.register(Perfil)
 
 admin.site.register(Mensaje)
 
-# superUsuario: martin password:martin123
+# superUsuario: martin password:martin1234

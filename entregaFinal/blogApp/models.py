@@ -1,31 +1,30 @@
 from django.db import models
+from django.contrib.auth.models import *
+
 
 
 # Create your models here.
 class Blog(models.Model):
-    id_blog = models.BigAutoField(primary_key=True)
     titulo = models.CharField(max_length=40)
     subtitulo = models.CharField(max_length=40)
     cuerpo = models.CharField(max_length=250)
     autor = models.CharField(max_length=40)
     fecha = models.DateField()
-    #falta ver como poner imagen
+    foto = models.ImageField(upload_to='blogs',null=True, blank=True)
     
     def __str__(self):
         return self.titulo + " " + self.autor + " " + str(self.fecha)
     
-class Usuario(models.Model):
-    id_usuario = models.BigAutoField(primary_key=True)
-    email = models.EmailField()
-    contrasena = models.CharField(max_length=20)
-    nombre_usuario = models.CharField(max_length=30)
+class Perfil(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to='avatares',null=True, blank=True)
     
     def __str__(self):
-        return self.nombre_usuario + " " + self.email
+        return self.user.username
     
 class Mensaje(models.Model):
-    id_usuario_origen = models.IntegerField()
-    id_usuario_destino = models.IntegerField()
+    usuario_origen = User
+    usuario_destino = User
     texto = models.CharField(max_length=250)
     
 
