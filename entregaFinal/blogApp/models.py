@@ -5,6 +5,7 @@ from django.contrib.auth.models import *
 
 # Create your models here.
 class Blog(models.Model):
+    id_blog = models.BigAutoField(primary_key=True)
     titulo = models.CharField(max_length=40)
     subtitulo = models.CharField(max_length=40)
     cuerpo = models.CharField(max_length=250)
