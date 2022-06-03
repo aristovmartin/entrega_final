@@ -11,6 +11,7 @@ class BlogForm(forms.Form):
     cuerpo = forms.CharField(max_length=250)
     autor = forms.CharField(max_length=40)
     fecha = forms.DateField()
+    foto = forms.ImageField(required=True)
     
 class MensajeForm(forms.Form):
     id_usuario_origen = forms.IntegerField()

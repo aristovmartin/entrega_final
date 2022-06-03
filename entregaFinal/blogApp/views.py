@@ -23,10 +23,10 @@ def main(request):
 
 def crear_blog(request):
     if request.method == 'POST':
-        formulario = BlogForm(request.POST)
+        formulario = BlogForm(request.POST,request.FILES)
         if formulario.is_valid():
             informacion = formulario.cleaned_data
-            blog = Blog(titulo=informacion['titulo'],subtitulo=informacion['subtitulo'],cuerpo=informacion['cuerpo'],autor=informacion['autor'],fecha=informacion['fecha'])
+            blog = Blog(titulo=informacion['titulo'],subtitulo=informacion['subtitulo'],cuerpo=informacion['cuerpo'],autor=informacion['autor'],fecha=informacion['fecha'],foto=informacion['foto'])
             blog.save()
             
             blogs = Blog.objects.all()

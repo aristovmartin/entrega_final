@@ -60,7 +60,7 @@
                     <hr class="tm-hr-primary">
                     <a class="">
                         <div class="tm-post-link-inner">
-                            <img src="{% static 'appBlog/img/prueba.jpg' %}" alt="Image" class="img-fluid">                            
+                            <img src="{{ blog.foto.url }}" alt="Image" class="img-fluid">                            
                         </div>
                         {% if fecha_hoy == blog.fecha %}
                         <span class="position-absolute tm-new-badge">Nuevo</span>
