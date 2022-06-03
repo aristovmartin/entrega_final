@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block sidebar %}
-
+{% if request.user.is_authenticated %}
 <li class="tm-nav-item"><a href="{% url 'editar_blog' blog.id_blog %}" class="tm-nav-link">
     <i class="fas fa-edit"></i>
     Editar blog
@@ -12,7 +12,7 @@
     <i class="far fa-trash-alt"></i>
     Borrar blog
 </a></li>
-
+{% endif %}
 {% endblock %}
 
 

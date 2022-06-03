@@ -4,9 +4,17 @@
 
 {% block cuentas %}
 
+{% if url %}
+
+<div class="text-center">
+    <img height="50px" src="{{url}}">
+</div>
+
+{% endif %}
+
 <h1> Formulario - Editar Perfil </h1>
 
-<form action="" method="post"> {% csrf_token %}
+<form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
     
     <table>
         {{miFormulario.as_table}}

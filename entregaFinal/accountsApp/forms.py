@@ -9,7 +9,8 @@ class UserEditForm(UserCreationForm):
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repetir password", widget=forms.PasswordInput)
     last_name = forms.CharField()    
-    first_name = forms.CharField()    
+    first_name = forms.CharField()
+    foto = forms.ImageField(required=True)    
     class Meta:
         model = User
-        fields = ['username','email','password1','password2','last_name','first_name']
+        fields = ['username','email','password1','password2','last_name','first_name','foto']

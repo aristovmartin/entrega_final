@@ -31,6 +31,18 @@
                         <i class="fas fa-users"></i>
                         Registrarse
                     </a></li>
+                    {% if request.user.is_authenticated %}
+                    <li class="tm-nav-item"><a href="{% url 'perfil' %}" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Perfil
+                    </a></li>
+                    <li class="tm-nav-item"><a href="{% url 'logout' %}" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Cerrar Sesión
+                    </a></li>
+                    {% endif %}
+                    
+                    
                 </ul>
             </nav>
     </header>
@@ -39,14 +51,17 @@
             <div class="row tm-row">
 
                 {% block cuentas %}
-
-                {% endblock %}
-
-                {% if mensaje%}
+                {% if mensaje and not url %}
                     <h1>{{mensaje}}</h1>
                 {% endif %}
 
-
+                {% if url %}
+                    <div class="text-center">
+                        <img height="100px" src="{{url}}">
+                        <h3>Que bueno verte {{usuario.username}}</h3>
+                    </div>
+                {% endif %}
+                {% endblock %}
             </div>
         </main>
     </div>

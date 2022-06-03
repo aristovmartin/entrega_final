@@ -3,12 +3,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import *
 from .forms import *
+from blogApp.models import *
 # Create your views here.
 
 def home(request):
     return render(request,"home.html")
 
 def login_user(request):
+    usuario = request.user    
     if request.method == 'POST':
         
         form = AuthenticationForm(request,data=request.POST)
@@ -21,7 +23,8 @@ def login_user(request):
             
             if user is not None:
                 login(request, user)
-                return render(request,'home.html',{"mensaje":f"Bienvenido {username}."})
+                perfil = Perfil.objects.filter(user=request.user.id)[0]
+                return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario,"url":perfil.foto.url})
             else:
                 return render(request,"home.html",{"mensaje":"Error, datos incorrectos."})
         else:
@@ -39,23 +42,27 @@ def registro(request):
         
         if form.is_valid():
             
-            usernames = form.cleaned_data["username"]
-            form.save()
+            perfil = Perfil(user=form.save())
+            perfil.save()
+            
             return render(request, "home.html",{"mensaje":"Usuario creado"})
         
     else:
         form = UserCreationForm()
         
     return render(request,"registro.html",{"form":form})
-
+@login_required
 def logout(request):
     return render(request,'logout.html')
 
+@login_required
 def edit_user(request):
     usuario = request.user
     
+    perfil = Perfil.objects.filter(user=request.user.id)[0]
+    
     if request.method == "POST":
-        miFormulario = UserEditForm(request.POST)
+        miFormulario = UserEditForm(request.POST,request.FILES)
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             
@@ -63,12 +70,16 @@ def edit_user(request):
             usuario.password1 = informacion["password1"]
             usuario.password2 = informacion["password2"]
             usuario.username = informacion["username"]
-            last_name = informacion["last_name"]
-            first_name = informacion["first_name"]
+            usuario.last_name = informacion["last_name"]
+            usuario.first_name = informacion["first_name"]
+            usuario.foto = informacion["foto"]
             usuario.save()
             
-            return render(request,"home.html")
+            perfil.foto = informacion["foto"]
+            perfil.save()
+            
+            return render(request,"home.html",{"usuario":usuario,"url":perfil.foto.url})
     else:
-        miFormulario = UserEditForm(initial={'email':usuario.email,'nombre_usuario':usuario.nombre_usuario})
+        miFormulario = UserEditForm(initial={'email':usuario.email,'username':usuario.username})
     
-    return render(request,'edit_user.html',{"miFormulario":miFormulario,"usuario":usuario})
+    return render(request,'edit_user.html',{"miFormulario":miFormulario,"usuario":usuario,"url":perfil.foto.url})

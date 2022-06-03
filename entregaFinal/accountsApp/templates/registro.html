@@ -4,9 +4,8 @@
 
 {% block cuentas %}
 
-<form method="post" action="">  
+<form method="post" action="" enctype="multipart/form-data"> {% csrf_token %} 
 
-    {% csrf_token %}
 
     {{form.as_p}}
 

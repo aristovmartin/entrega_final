@@ -6,8 +6,7 @@ urlpatterns = [
     path('', views.home, name="cuentas"),
     path('register', views.registro, name="registro"),
     path('login', views.login_user, name="login"),
-    path('logout', LogoutView.as_view(template_name='accountsApp/logout.html'), name="logout"),
+    path('logout', LogoutView.as_view(template_name='logout.html'), name="logout"),
     path('inicio', views.login, name="volver_blog"),
-    path('edit', views.edit_user, name="editar_perfil"),
-
+    path('profile', views.edit_user, name="perfil"),
 ]

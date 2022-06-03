@@ -17,9 +17,9 @@ def pagina_blog(request,id):
 
 def main(request):
     blogs = Blog.objects.all()
-    print(blogs)
+    perfil = Perfil.objects.filter(user=request.user.id)[0]
     today = datetime.now().date()
-    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
+    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
 
 def crear_blog(request):
     if request.method == 'POST':

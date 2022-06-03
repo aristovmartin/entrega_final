@@ -53,7 +53,16 @@
     </header>
     <div class="container-fluid">
         <main class="tm-main">        
+
+            <!-- Search form -->
             <div class="row tm-row">
+                <div class="col-12">
+                    <img height="75px" src="{{url}}"> Usuario: {{username}} </img>
+                </div>                
+            </div>
+
+            <div class="row tm-row">
+                {% if blogs %}
                 {% for blog in blogs %}
                 <!-- Esto es un articulo -->
                 <article class="col-12 col-md-6 tm-post">
@@ -81,6 +90,10 @@
                     </div>
                 </article>
                 {% endfor %}
+                {% endif %}
+                {% if not blogs %}
+                    <h1 style="color:red">No hay blogs que mostrar</h1>
+                {% endif %}
                 <!-- Aca termina un articulo -->
             </div>
         </main>
