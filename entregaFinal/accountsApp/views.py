@@ -8,7 +8,7 @@ from .forms import *
 def home(request):
     return render(request,"home.html")
 
-def login(request):
+def login_user(request):
     if request.method == 'POST':
         
         form = AuthenticationForm(request,data=request.POST)
@@ -21,11 +21,11 @@ def login(request):
             
             if user is not None:
                 login(request, user)
-                return render(request,'blogApp/main.html',{"mensajes":f"Bienvenido {username}."})
+                return render(request,'home.html',{"mensaje":f"Bienvenido {username}."})
             else:
-                return render(request,"blogApp/main.html",{"mensaje":"Error, datos incorrectos."})
+                return render(request,"home.html",{"mensaje":"Error, datos incorrectos."})
         else:
-            return render(request,"blogApp/main.html",{"mensaje":"Error,formulario incorrecto."})
+            return render(request,"home.html",{"mensaje":"Error,formulario incorrecto."})
         
     form = AuthenticationForm()
     
@@ -41,7 +41,7 @@ def registro(request):
             
             usernames = form.cleaned_data["username"]
             form.save()
-            return render(request, "blogApp/main.html",{"mensaje":"Usuario creado"})
+            return render(request, "home.html",{"mensaje":"Usuario creado"})
         
     else:
         form = UserCreationForm()

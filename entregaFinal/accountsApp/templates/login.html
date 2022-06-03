@@ -3,10 +3,7 @@
 {% load static %}
 
 {% block cuentas %}
-
-<form method="post" action="">  
-
-    {% csrf_token %}
+    <form method="post" action="">{% csrf_token %}  
 
     {{form.as_p}}
 
