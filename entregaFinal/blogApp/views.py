@@ -17,6 +17,7 @@ def pagina_blog(request,id):
 
 def main(request):
     blogs = Blog.objects.all()
+    print(blogs)
     today = datetime.now().date()
     return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
 
