@@ -10,7 +10,7 @@
             <div class="col-lg-8 tm-post-col">
                 <div class="tm-post-full">                    
                     <div class="mb-4">
-                        <form action="{% url 'editar_blog' id %}" method="post">{% csrf_token %}
+                        <form action="{% url 'editar_blog' id %}" method="post" enctype="multipart/form-data">{% csrf_token %}
                             <table> 
                                 {{formulario.as_table}}
                             </table>

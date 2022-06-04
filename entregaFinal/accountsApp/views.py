@@ -23,9 +23,10 @@ def login_user(request):
             
             if user is not None:
                 login(request, user)
+                perfil = Perfil.objects.filter(user=request.user.id)
                 if(perfil.count() > 0):
-                    perfil = Perfil.objects.filter(user=request.user.id)[0]
-                    return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario,"url":perfil.foto.url})
+                    perfil_nuevo = perfil[0]
+                    return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario,"url":perfil_nuevo.foto.url})
                 else:
                     return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario})
             else:

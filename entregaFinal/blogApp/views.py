@@ -47,8 +47,10 @@ def crear_blog(request):
 def editar_blog(request,id):
     blog = Blog.objects.get(id_blog = id)
     if request.method == 'POST':
-         formulario = BlogForm(request.POST)
+         print("Entro a request.method")
+         formulario = BlogForm(request.POST,request.FILES)
          if formulario.is_valid():
+             print("Formulario es valido")
              informacion = formulario.cleaned_data
              
              blog.titulo = informacion["titulo"]
@@ -56,7 +58,7 @@ def editar_blog(request,id):
              blog.cuerpo = informacion["cuerpo"]
              blog.autor = informacion["autor"]
              blog.fecha = informacion["fecha"]
-             
+             blog.foto = informacion["foto"]
              blog.save()
 
              blogs = Blog.objects.all()
