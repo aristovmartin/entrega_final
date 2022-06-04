@@ -26,7 +26,11 @@ def login_user(request):
                 perfil = Perfil.objects.filter(user=request.user.id)
                 if(perfil.count() > 0):
                     perfil_nuevo = perfil[0]
-                    return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario,"url":perfil_nuevo.foto.url})
+                    if(perfil_nuevo.foto):
+                        url = perfil_nuevo.foto.url
+                    else:
+                        url = ""
+                    return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario,"url":url})
                 else:
                     return render(request,'home.html',{"mensaje":f"Bienvenido {username}.","usuario":usuario})
             else:
@@ -62,28 +66,33 @@ def logout(request):
 @login_required
 def edit_user(request):
     usuario = request.user
-    
-    perfil = Perfil.objects.filter(user=request.user.id)[0]
-    
+    perfil = Perfil.objects.filter(user=request.user.id)
+    if(perfil.count() > 0):
+        perfil_nuevo = perfil[0]
+        if(perfil_nuevo.foto):
+            url = perfil_nuevo.foto.url
+        else:
+            url = ""
     if request.method == "POST":
         miFormulario = UserEditForm(request.POST,request.FILES)
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-            
             usuario.email = informacion["email"]
             usuario.password1 = informacion["password1"]
             usuario.password2 = informacion["password2"]
             usuario.username = informacion["username"]
             usuario.last_name = informacion["last_name"]
             usuario.first_name = informacion["first_name"]
-            usuario.foto = informacion["foto"]
             usuario.save()
+                        
+            perfil_actual = perfil[0] 
+            perfil_actual.foto = informacion["foto"]            
+            perfil_actual.save()
             
-            perfil.foto = informacion["foto"]
-            perfil.save()
+            url = perfil_actual.foto.url
             
-            return render(request,"home.html",{"usuario":usuario,"url":perfil.foto.url})
+            return render(request,"home.html",{"usuario":usuario,"url":url})
     else:
         miFormulario = UserEditForm(initial={'email':usuario.email,'username':usuario.username})
     
-    return render(request,'edit_user.html',{"miFormulario":miFormulario,"usuario":usuario,"url":perfil.foto.url})
+    return render(request,'edit_user.html',{"miFormulario":miFormulario,"usuario":usuario,"url":url})

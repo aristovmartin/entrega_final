@@ -19,10 +19,14 @@ def pagina_blog(request,id):
 def main(request):
     blogs = Blog.objects.all()
     perfiles = Perfil.objects.filter(user=request.user.id)
-    today = datetime.now().date()
+    today = datetime.now().date()    
     if(perfiles.count() > 0):
-        perfil = perfiles[0]
-        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
+        perfil = perfiles[0]      
+        if(perfil.foto):
+            url = perfil.foto.url
+        else:
+            url = ""  
+        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":url,"username":perfil.user.username})
     else:
         return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
         
@@ -43,14 +47,11 @@ def crear_blog(request):
         formulario = BlogForm()
         return render(request,'create_blog.html',{'formulario':formulario})  
 
-#falta poder ver como editar foto
 def editar_blog(request,id):
     blog = Blog.objects.get(id_blog = id)
     if request.method == 'POST':
-         print("Entro a request.method")
          formulario = BlogForm(request.POST,request.FILES)
          if formulario.is_valid():
-             print("Formulario es valido")
              informacion = formulario.cleaned_data
              
              blog.titulo = informacion["titulo"]
