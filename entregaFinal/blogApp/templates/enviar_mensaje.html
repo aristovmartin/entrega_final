@@ -1,0 +1,31 @@
+{% extends "page.html" %}
+
+{% load static %}
+
+{% block bloqueBlog %}
+
+<div class="container-fluid">
+    <main class="tm-main">         
+        <div class="row tm-row">
+            <div class="col-lg-8 tm-post-col">
+                <div class="tm-post-full">                    
+                    <div class="mb-4">
+                        <form action="{% url 'enviar_mensajes' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <table> 
+                                {{formulario.as_table}}
+                            </table>
+                            <br>
+                            <input type="submit" value="Crear">       
+                        </form>
+            </div>        
+        </div>
+    </div>
+</div>
+
+{% if mensaje %}
+<h1 style="color:red">{{mensaje}}</h1> 
+{% endif %}
+
+
+{% endblock %}
+

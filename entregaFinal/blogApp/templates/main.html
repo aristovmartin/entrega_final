@@ -26,10 +26,12 @@
                         <i class="fas fa-home"></i>
                         Inicio
                     </a></li>
+                    {% if request.user.is_authenticated %}
                     <li class="tm-nav-item"><a href="{% url 'mensajes' %}" class="tm-nav-link">
                         <i class="fas fa-paper-plane"></i>
                         Mensajes
                     </a></li>
+                    {% endif %}
                     <li class="tm-nav-item"><a href="{% url 'cuentas' %}" class="tm-nav-link">
                         <i class="fas fa-users"></i>
                         Cuenta
@@ -53,14 +55,14 @@
     </header>
     <div class="container-fluid">
         <main class="tm-main">        
-
+            {% if request.user.is_authenticated %}
             <!-- Search form -->
             <div class="row tm-row">
                 <div class="col-12">
                     <img height="75px" src="{{url}}"> Usuario: {{username}} </img>
                 </div>                
             </div>
-
+            {% endif %}
             <div class="row tm-row">
                 {% if blogs %}
                 {% for blog in blogs %}

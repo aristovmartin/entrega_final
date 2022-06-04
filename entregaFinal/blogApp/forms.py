@@ -14,6 +14,6 @@ class BlogForm(forms.Form):
     foto = forms.ImageField(required=True)
     
 class MensajeForm(forms.Form):
-    id_usuario_origen = forms.IntegerField()
-    id_usuario_destino = forms.IntegerField()
+    usuario_origen = forms.CharField(max_length=50)
+    usuario_destino = forms.CharField(max_length=50)
     texto = forms.CharField(max_length=250)

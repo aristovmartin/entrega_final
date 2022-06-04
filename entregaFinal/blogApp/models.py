@@ -24,8 +24,8 @@ class Perfil(models.Model):
         return self.user.username
     
 class Mensaje(models.Model):
-    usuario_origen = User
-    usuario_destino = User
+    usuario_origen = models.CharField(max_length=100)
+    usuario_destino = models.CharField(max_length=100)
     texto = models.CharField(max_length=250)
     
 

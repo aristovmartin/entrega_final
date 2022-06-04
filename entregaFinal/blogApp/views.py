@@ -3,6 +3,7 @@ from .models import *
 from .forms import *
 from datetime import *
 from django.contrib.auth.decorators import *
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -17,9 +18,15 @@ def pagina_blog(request,id):
 
 def main(request):
     blogs = Blog.objects.all()
-    perfil = Perfil.objects.filter(user=request.user.id)[0]
+    perfiles = Perfil.objects.filter(user=request.user.id)
     today = datetime.now().date()
-    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
+    if(perfiles.count() > 0):
+        perfil = perfiles[0]
+        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
+    else:
+        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
+        
+        
 
 def crear_blog(request):
     if request.method == 'POST':
@@ -69,6 +76,38 @@ def eliminar_blog(request,id):
     
     return render(request,'main.html',{"blogs":blogs})
 
+@login_required
 def mensajes(request):
-    mensajes = Mensaje.objects.all()
-    return render(request,'mensajes.html',{"mensajes":mensajes})
+    mensajes_enviados = Mensaje.objects.filter(usuario_origen = request.user.username)
+    mensajes_recibidos = Mensaje.objects.filter(usuario_destino = request.user.username)
+    return render(request,'mensajes.html',{"mensajes_enviados":mensajes_enviados,"mensajes_recibidos":mensajes_recibidos})
+
+@login_required
+def enviar_mensajes(request):
+    if request.method == 'POST':
+        formulario = MensajeForm(request.POST)
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            usuario_origen = User.objects.filter(username=informacion['usuario_origen'])
+            usuario_destino = User.objects.filter(username=informacion['usuario_destino'])
+            if(usuario_origen.count() > 0 and usuario_destino.count() > 0):
+                mensaje = Mensaje(usuario_origen=informacion["usuario_origen"],usuario_destino=informacion["usuario_destino"],texto=informacion["texto"])
+                mensaje.save()
+                
+                blogs = Blog.objects.all()
+                perfiles = Perfil.objects.filter(user=request.user.id)
+                today = datetime.now().date()
+                if(perfiles.count() > 0):
+                    perfil = perfiles[0]
+                    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
+                else:
+                    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
+
+            else:
+                formulario = MensajeForm()
+                return render(request,'enviar_mensaje.html',{'formulario':formulario,"mensaje":"No existe alguno de lo usuarios ingresados"})
+    else:
+        formulario = MensajeForm()
+        return render(request,'enviar_mensaje.html',{'formulario':formulario})
+    
+    
