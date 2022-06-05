@@ -118,4 +118,16 @@ def borrar_foto(request,id):
     if(blog):
         blog.foto = " "
         blog.save()
-    return render(request,'main.html')
+
+    blogs = Blog.objects.all()
+    perfiles = Perfil.objects.filter(user=request.user.id)
+    today = datetime.now().date()    
+    if(perfiles.count() > 0):
+        perfil = perfiles[0]      
+        if(perfil.foto):
+            url = perfil.foto.url
+        else:
+            url = ""  
+        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":url,"username":perfil.user.username})
+    else:
+        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})

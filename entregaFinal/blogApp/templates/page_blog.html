@@ -23,7 +23,9 @@
         <div class="row tm-row">
             <div class="col-12">
                 <hr class="tm-hr-primary tm-mb-55">
-                <img src="{{ blog.foto.url }}" alt="Image" class="img-fluid">  
+                {% if blog.foto %}
+                <img src="{{ blog.foto.url }}" alt="Image" class="img-fluid">
+                {% endif %}  
             </div>
         </div>
         <div class="row tm-row">
