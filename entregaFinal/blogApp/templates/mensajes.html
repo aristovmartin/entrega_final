@@ -32,36 +32,30 @@
     </header>
 
 {% if mensajes_enviados %}
+    <h1 style="color:red;text-align:center"> Mensajes enviados</h1>
     <div class="container-fluid">
-        <main class="tm-main">        
-            <div class="row tm-row">
-                <h1 style="color:red"> Mensajes enviados</h1>
-                {% for mensaje in mensajes_enviados %}                
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Para: {{ mensaje.usuario_destino }}. </h3>
-                            </div>
-                            <div class="card-body">
-                                <p>{{ mensaje.texto }}</p>
-                            </div>
-                        </div>
-                {% endfor %}
+    {% for mensaje in mensajes_enviados %}
+    <div class="text-center">   
+        <ul> 
+            <li>Usuario: {{mensaje.usuario_origen}} dice: </li>
+            <li>{{mensaje.texto}}</li>
+            <li>Para: {{mensaje.usuario_destino}}</li>
+        </ul>
+    </div>
+    {% endfor %}
 {% endif %}
+                   
 
 {% if mensajes_recibidos %}
-                <h1 style="color:red"> Mensajes Recibidos</h1>
+                <h1 style="color:red;text-align:center"> Mensajes Recibidos</h1>
                 {% for mensaje in mensajes_recibidos %}
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Para: {{ mensaje.usuario_destino }}. </h3>
-                                <h3>De: {{ mensaje.usuario_origen }}</h3>
-                            </div>
-                            <div class="card-body">
-                                <p>{{ mensaje.texto }}</p>
-                            </div>
-                        </div>
+                    <div class="text-center">
+                        <ul style="display:felx;justify-content:center"> 
+                            <li>Usuario: {{mensaje.usuario_origen}} dice:</li>
+                            <li>{{mensaje.texto}}</li>
+                            <li>Para: {{mensaje.usuario_destino}}</li>
+                        </ul>
+                    </div>
                 {% endfor %}
 {% endif %}
             </div>
