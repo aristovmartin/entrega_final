@@ -34,6 +34,12 @@
                         <h4 class="pt-2 tm-color-primary tm-post-subtitle">{{blog.subtitulo}}</h4>
                         <p class="tm-mb-40">{{blog.fecha}}, autor {{blog.autor}}</p>
                         <p> {{blog.cuerpo}} </p>
+
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'borrar_foto_blog' blog.id_blog %}">
+                        <button type="submit" class="">Borrar foto</button>
+                        </a>
+                        {% endif %}
             </div>        
         </div>
     </div>

@@ -113,4 +113,9 @@ def enviar_mensajes(request):
         formulario = MensajeForm()
         return render(request,'enviar_mensaje.html',{'formulario':formulario})
     
-    
+def borrar_foto(request,id):
+    blog = Blog.objects.get(id_blog=id)
+    if(blog):
+        blog.foto = " "
+        blog.save()
+    return render(request,'main.html')

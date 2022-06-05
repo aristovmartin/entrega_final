@@ -11,5 +11,6 @@ urlpatterns = [
     path('mensajes',views.mensajes, name="mensajes"),
     path('enviarMensajes',views.enviar_mensajes, name="enviar_mensajes"),
     path('accounts/',include('accountsApp.urls'), name="cuentas"),
+    path('borrarFoto/<id>',views.borrar_foto, name="borrar_foto_blog"),
 
 ]

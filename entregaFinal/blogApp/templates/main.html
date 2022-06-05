@@ -64,39 +64,40 @@
             </div>
             {% endif %}
             <div class="row tm-row">
-                {% if blogs %}
-                {% for blog in blogs %}
-                <!-- Esto es un articulo -->
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a class="">
-                        <div class="tm-post-link-inner">
-                            <img src="{{ blog.foto.url }}" alt="Image" class="img-fluid">                            
-                        </div>
-                        {% if fecha_hoy == blog.fecha %}
-                        <span class="position-absolute tm-new-badge">Nuevo</span>
-                        {% endif %}
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{blog.titulo}}</h2>
-                        <h4 class="tm-pt-30 tm-color-primary tm-post-subtitule">{{blog.subtitulo}}</h4>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        {{blog.cuerpo}}
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">{{blog.fecha}}</span>
-                        <a href="{% url 'pagina_blog' blog.id_blog %}"><span class="tm-color-primary">Leer mas</span></a>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>{{blog.autor}}</span>
-                    </div>
-                </article>
-                {% endfor %}
-                {% endif %}
                 {% if not blogs %}
                     <h1 style="color:red">No hay blogs que mostrar</h1>
                 {% endif %}
-                <!-- Aca termina un articulo -->
+
+                {% if blogs %}
+                    {% for blog in blogs %}
+                    <article class="col-12 col-md-6 tm-post">
+                        <hr class="tm-hr-primary">
+                        <a class="">
+                            {% if blog.foto %}
+                                <div class="tm-post-link-inner">
+                                    <img src="{{ blog.foto.url }}" alt="Image" class="img-fluid">                            
+                                </div>
+                            {% endif %}
+                            {% if fecha_hoy == blog.fecha %}
+                            <span class="position-absolute tm-new-badge">Nuevo</span>
+                            {% endif %}
+                            <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{blog.titulo}}</h2>
+                            <h4 class="tm-pt-30 tm-color-primary tm-post-subtitule">{{blog.subtitulo}}</h4>
+                        </a>                    
+                        <p class="tm-pt-30">
+                            {{blog.cuerpo}}
+                        </p>
+                        <div class="d-flex justify-content-between tm-pt-45">
+                            <span class="tm-color-primary">{{blog.fecha}}</span>
+                            <a href="{% url 'pagina_blog' blog.id_blog %}"><span class="tm-color-primary">Leer mas</span></a>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <span>{{blog.autor}}</span>
+                        </div>
+                    </article>
+                    {% endfor %}
+                {% endif %}
             </div>
         </main>
     </div>
