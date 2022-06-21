@@ -94,17 +94,23 @@ def enviar_mensajes(request):
             usuario_origen = User.objects.filter(username=request.user.username)
             usuario_destino = User.objects.filter(username=informacion['usuario_destino'])
             if(usuario_origen.count() > 0 and usuario_destino.count() > 0):
-                mensaje = Mensaje(usuario_origen=request.user.username,usuario_destino=informacion["usuario_destino"],texto=informacion["texto"])
-                mensaje.save()
-                
-                blogs = Blog.objects.all()
-                perfiles = Perfil.objects.filter(user=request.user.id)
-                today = datetime.now().date()
-                if(perfiles.count() > 0):
-                    perfil = perfiles[0]
-                    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
+                print(usuario_origen[0])
+                print(usuario_destino[0])
+                if(usuario_origen[0] == usuario_destino[0]):
+                    formulario = MensajeForm(initial={'usuario_origen':request.user.username})
+                    return render(request,'enviar_mensaje.html',{'formulario':formulario,"mensaje":"No es posible enviar mensajes a uno mismo."})  
                 else:
-                    return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
+                    mensaje = Mensaje(usuario_origen=request.user.username,usuario_destino=informacion["usuario_destino"],texto=informacion["texto"])
+                    mensaje.save()
+                
+                    blogs = Blog.objects.all()
+                    perfiles = Perfil.objects.filter(user=request.user.id)
+                    today = datetime.now().date()
+                    if(perfiles.count() > 0):
+                        perfil = perfiles[0]
+                        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today,"url":perfil.foto.url,"username":perfil.user.username})
+                    else:
+                        return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
 
             else:
                 formulario = MensajeForm()
