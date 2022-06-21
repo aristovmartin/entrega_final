@@ -5,11 +5,11 @@ from django.contrib.auth.models import *
 class UserEditForm(UserCreationForm):
     
     username = forms.CharField()
-    email = forms.EmailField(label="Modificar mail")
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Repetir password", widget=forms.PasswordInput)
-    last_name = forms.CharField()    
-    first_name = forms.CharField()
+    email = forms.EmailField(label="Modificar mail", required = False)
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput,required = True)
+    password2 = forms.CharField(label="Repetir password", widget=forms.PasswordInput, required = True)
+    last_name = forms.CharField(required=False)    
+    first_name = forms.CharField(required=False)
     foto = forms.ImageField(required=True)    
     class Meta:
         model = User

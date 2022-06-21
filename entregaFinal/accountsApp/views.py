@@ -93,6 +93,6 @@ def edit_user(request):
             
             return render(request,"home.html",{"usuario":usuario,"url":url})
     else:
-        miFormulario = UserEditForm(initial={'email':usuario.email,'username':usuario.username})
+        miFormulario = UserEditForm(initial={'email':usuario.email,'username':usuario.username,'last_name':usuario.last_name,'first_name':usuario.first_name})
     
     return render(request,'edit_user.html',{"miFormulario":miFormulario,"usuario":usuario,"url":url})
