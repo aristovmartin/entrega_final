@@ -91,10 +91,10 @@ def enviar_mensajes(request):
         formulario = MensajeForm(request.POST)
         if formulario.is_valid():
             informacion = formulario.cleaned_data
-            usuario_origen = User.objects.filter(username=informacion['usuario_origen'])
+            usuario_origen = User.objects.filter(username=request.user.username)
             usuario_destino = User.objects.filter(username=informacion['usuario_destino'])
             if(usuario_origen.count() > 0 and usuario_destino.count() > 0):
-                mensaje = Mensaje(usuario_origen=informacion["usuario_origen"],usuario_destino=informacion["usuario_destino"],texto=informacion["texto"])
+                mensaje = Mensaje(usuario_origen=request.user.username,usuario_destino=informacion["usuario_destino"],texto=informacion["texto"])
                 mensaje.save()
                 
                 blogs = Blog.objects.all()
@@ -109,8 +109,11 @@ def enviar_mensajes(request):
             else:
                 formulario = MensajeForm()
                 return render(request,'enviar_mensaje.html',{'formulario':formulario,"mensaje":"No existe alguno de lo usuarios ingresados"})
+        else:#No es valido el formulario
+            formulario = MensajeForm(initial={'usuario_origen':request.user.username})
+            return render(request,'enviar_mensaje.html',{'formulario':formulario})
     else:
-        formulario = MensajeForm()
+        formulario = MensajeForm(initial={'usuario_origen':request.user.username})
         return render(request,'enviar_mensaje.html',{'formulario':formulario})
     
 def borrar_foto(request,id):
