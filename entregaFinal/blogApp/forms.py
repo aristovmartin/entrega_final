@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import Perfil
 class UsuarioForm(forms.Form):
     email = forms.EmailField()
     contrasena = forms.CharField(max_length=20)
@@ -13,5 +13,5 @@ class BlogForm(forms.Form):
     
 class MensajeForm(forms.Form):
     usuario_origen = forms.CharField(disabled=True, required=False)
-    usuario_destino = forms.CharField(max_length=50)
+    usuario_destino = forms.ModelChoiceField(queryset=Perfil.objects.all())
     texto = forms.CharField(max_length=250)
