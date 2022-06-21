@@ -9,8 +9,6 @@ class BlogForm(forms.Form):
     titulo = forms.CharField(max_length=40)
     subtitulo = forms.CharField(max_length=40)
     cuerpo = forms.CharField(max_length=250)
-    autor = forms.CharField(max_length=40)
-    fecha = forms.DateField()
     foto = forms.ImageField(required=True)
     
 class MensajeForm(forms.Form):

@@ -31,13 +31,13 @@ def main(request):
         return render(request,'main.html',{"blogs":blogs,"fecha_hoy":today})
         
         
-
+@login_required
 def crear_blog(request):
     if request.method == 'POST':
         formulario = BlogForm(request.POST,request.FILES)
         if formulario.is_valid():
             informacion = formulario.cleaned_data
-            blog = Blog(titulo=informacion['titulo'],subtitulo=informacion['subtitulo'],cuerpo=informacion['cuerpo'],autor=informacion['autor'],fecha=informacion['fecha'],foto=informacion['foto'])
+            blog = Blog(titulo=informacion['titulo'],subtitulo=informacion['subtitulo'],cuerpo=informacion['cuerpo'],autor=request.user.username,fecha=datetime.now(),foto=informacion['foto'])
             blog.save()
             
             blogs = Blog.objects.all()
